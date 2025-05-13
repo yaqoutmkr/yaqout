@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html lang="ar">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>اختبار العطر المثالي</title>
+
+    <style>
+
+        body {
+
+            font-family: 'Segoe UI', Tahoma, Geneva,Verdana, sans-serif;
+
+            background-color: #f9f8f6; /* لون خلفية هادئ */
+
+            margin: 0;
+
+            direction: rtl;
+
+            text-align: right;
+
+            color: #4a4a4a; /* لون نص أكثر هدوءًا */
+
+        }
+
+        header {
+
+            background-color: #fff; /* خلفية بيضاء للترويسة */
+
+            color: #555; /* لون نص الترويسة */
+
+            text-align: center;
+
+            padding: 1.5rem 0; /* مساحة أكبر للترويسة */
+
+            border-bottom: 1px solid #eee; /* خط فاصل سفلي خفيف */
+
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* ظل خفيف */
+
+            display: flex;
+
+            justify-content: space-around; /* توزيع العناصر داخل الترويسة */
+            flex-direction: row-reverse;
+            align-items: center;
+
+        }
+
+        .logo {
+
+            font-size: 1.5em;
+
+            font-weight: bold;
+
+            color: #b75986; /* لون مميز للشعار */
+
+        }
+
+        .nav-links a {
+
+            text-decoration: none;
+
+            color: #777;
+
+            margin: 0 15px;
+
+            transition: color 0.3s ease;
+
+        }
+
+        .nav-links a:hover {
+
+            color: #d2b48c;
+
+        }
+
+        h1 {
+
+            color: #666;
+
+            text-align: center;
+
+            margin-bottom: 2em;
+
+            margin-top: 2em;
+
+            font-size: 2em; /* حجم خط أكبر للعنوان الرئيسي */
+
+        }
+
+        .quiz-step {
+
+            display: none;
+
+            opacity: 0;
+
+            transition: opacity 0.3s ease-in-out;
+
+            padding: 2em; /* مساحة داخلية أكبر للخطوات */
+
+            margin: 1.5em auto; /* توسيط الخطوات مع هامش علوي وسفلي */
+
+            border: 1px solid #ddd;
+
+            border-radius: 8px;
+
+            background-color: #fff;
+
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+            max-width: 600px; /* تحديد عرض أقصى للخطوات */
+
+        }
+
+        .quiz-step:target {
+
+            display: block;
+
+            opacity: 1;
+
+        }
+
+        .quiz-step:first-of-type {
+
+            display: block;
+
+            opacity: 1;
+
+        }
+
+        .btn {
+
+            display: block;
+
+            margin: 1em 0;
+
+            padding: 1em 2em; /* مساحة داخلية أكبر للأزرار */
+
+            background-color: #643e50;
+
+            text-decoration: none;
+
+            color: #fff;
+
+            border-radius: 8px;
+
+            text-align: center;
+
+            transition: background-color 0.3s ease;
+
+            font-size: 1em; /* حجم خط الأزرار */
+
+        }
+
+        .btn:hover {
+
+            background-color: #b795a4;
+
+        }
+
+        .result {
+
+            text-align: center;
+
+            padding: 2em;
+
+            margin: 1.5em auto;
+
+            border: 1px solid #c0c0c0;
+
+            border-radius: 8px;
+
+            background-color: #f9f9f9;
+
+            max-width: 600px;
+
+        }
+        .result-image {
+    width: 150px; /* حجم الصورة */
+    height: auto;
+    display: block;
+    margin: 10px auto;
+    border-radius: 10px;
+}
+
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">
+
+            <span style="font-style: italic;">lillac</span>Scents
+
+        </div>
+
+        <nav class="nav-links">
+        
+            <a href="#">home</a>
+
+            <a href="#preferences">fregrance preferences</a>
+
+            <a href="our_parfumes.html">our parfumes</a>
+
+            <a href="welcome.html">Quiz</a>
+
+            <a href="#">contact us</a>
+
+        </nav>
+
+    </header>
+
+    <h1>اكتشف عطرك الذي يعكس شخصيتك!</h1>
+
+
+
+    <div class="quiz-step" id="step1">
+
+        <p>ما هي الرائحة التي تفضلها في أغلب الأحيان؟</p>
+
+        <a href="#step2a" class="btn">روائح الأزهار (الياسمين، الورد، إلخ)</a>
+
+        <a href="#step2b" class="btn">روائح الأخشاب (خشب الصندل، الأرز، إلخ)</a>
+
+        <a href="#step2c" class="btn">روائح الحمضيات (الليمون، البرتقال، إلخ)</a>
+
+        <a href="#step2d" class="btn">روائح الفواكه (التفاح، التوت، إلخ)</a>
+
+    </div>
+
+
+
+    <div class="quiz-step" id="step2a">
+
+        <p>متى تفضل استخدام العطور الزهرية؟</p>
+
+        <a href="#result_floral_day" class="btn">خلال النهار وفي المناسبات الخفيفة</a>
+
+        <a href="#result_floral_evening" class="btn">في المساء والمناسبات الخاصة</a>
+
+    </div>
+
+
+
+    <div class="quiz-step" id="step2b">
+
+        <p>ما هي النوتة الخشبية التي تجدها أكثر جاذبية؟</p>
+
+        <a href="#result_woody_sandalwood" class="btn">خشب الصندل الدافئ والكريمي</a>
+
+        <a href="#result_woody_cedar" class="btn">خشب الأرز القوي والناعم</a>
+
+        <a href="#result_woody_vetiver" class="btn">نجيل الهند الترابي والدخاني</a>
+
+    </div>
+
+
+
+    <div class="quiz-step" id="step2c">
+
+        <p>ما مدى الانتعاش الذي تفضله في عطور الحمضيات؟</p>
+
+        <a href="#result_citrus_light" class="btn">انتعاش خفيف ومنعش</a>
+
+        <a href="#result_citrus_zesty" class="btn">حمضي قوي ولاذع</a>
+
+    </div>
+
+
+
+    <div class="quiz-step" id="step2d">
+
+        <p>ما هي الفاكهة التي ترتبط لديك بشعور جيد؟</p>
+
+        <a href="#result_fruity_berry" class="btn">التوت المنعش والحلو</a>
+
+        <a href="#result_fruity_apple" class="btn">التفاح الهادئ والناعم</a>
+
+        <a href="#result_fruity_tropical" class="btn">الفواكه الاستوائية المبهجة</a>
+
+    </div>
+<div class="quiz-step result" id="result_floral_day">
+    <h2>عطرك المقترح: n,818 – Almost Friday</h2>
+    <p>عطر ناعم ومريح بنفحات الزهور والحليب، مثالي للأماكن المغلقة والنهار الهادئ.</p>
+    <img src="img/818.jpg" alt="Friday"  class="result-image">
+    <a href="#step1" class="btn">إعادة الاختبار</a>
+</div>
+
+<div class="quiz-step result" id="result_floral_evening">
+    <h2>عطرك المقترح: n,743 – Shine On</h2>
+    <p>عطر زهري-خشبي فاخر مع الماغنوليا والفانيليا، يناسب السهرات والمناسبات الخاصة.</p>
+    <img src="img/743.jpg" alt="Friday"class="result-image" >
+    <a href="#step1" class="btn">إعادة الاختبار</a>
+</div>
+
+<div class="quiz-step result" id="result_woody_sandalwood">
+    <h2>عطرك المقترح: n,345 – Indigo Haze</h2>
+    <p>عطر غني وخشبي بنفحات الصندل والباتشولي، يضفي لمسة غموض وأناقة للمساء.</p>    
+    <img src="img/345.jpg" alt="Friday"class="result-image">
+    <a href="#step1" class="btn">إعادة الاختبار</a>
+</div>
+
+<div class="quiz-step result" id="result_woody_cedar">
+    <h2>عطرك المقترح: n,551 – Amber Sunset</h2>
+    <p>عطر زهري-خشبي بعنبر دافئ وخشب الأرز، مناسب للأجواء المهنية والهادئة.</p>
+    <img src="img/551.jpg" alt="Friday"class="result-image">
+    <a href="#step1" class="btn">إعادة الاختبار</a>
+</div>
+
+<div class="quiz-step result" id="result_woody_vetiver">
+    <h2>عطرك المقترح: n,415 – Chateau</h2>
+    <p>مزيج فاكهي وخشبي مع لمسة من الفيتيفر والأرز، يعكس فخامة وهدوء.</p>
+        <img src="img/415.jpg" alt="Friday"class="result-image">
+    <a href="#step1" class="btn">إعادة الاختبار</a>
+</div>
+
+<div class="quiz-step result" id="result_citrus_light">
+    <h2>عطرك المقترح: n,144 – Brightside</h2>
+    <p>عطر حمضي زهري منعش مثالي لأيام الصيف والانتعاش بعد النشاط.</p>
+    <img src="img/144.jpg" alt="Friday"class="result-image">
+    <a href="#step1" class="btn">إعادة الاختبار</a>
+</div>
+
+<div class="quiz-step result" id="result_citrus_zesty">
+    <h2>عطرك المقترح: n,307 – Sunlit Grove</h2>
+    <p>عطر حمضي-عشبي مشرق بلمسة من اليوسفي والريحان، مثالي للأوقات الرياضية.</p>
+    <img src="img/307.jpg" alt="Friday"class="result-image">
+    <a href="#step1" class="btn">إعادة الاختبار</a>
+</div>
+
+<div class="quiz-step result" id="result_fruity_berry">
+    <h2>عطرك المقترح: n,619 – HIDDEN COAST</h2>
+    <p>عطر حلو ومنعش بنفحات فواكه التوت والفانيليا، مثالي للأجواء الرومانسية.</p>
+    <img src="img/619.jpg" alt="Friday"class="result-image">
+
+    <a href="#step1" class="btn">إعادة الاختبار</a>
+</div>
+
+<div class="quiz-step result" id="result_fruity_apple">
+    <h2>عطرك المقترح: n,008 – SEY YES!</h2>
+    <p>عطر ناعم وفاكهي مع لمسة خشبية، يمنحك إحساسًا بالرقي والهدوء.</p>
+    <img src="img/008.jpg" alt="Friday"class="result-image">
+
+    <a href="#step1" class="btn">إعادة الاختبار</a>
+</div>
+
+<div class="quiz-step result" id="result_fruity_tropical">
+    <h2>عطرك المقترح: n,271 – GALLERY MUSE</h2>
+    <p>عطر صيفي فاكهي بنفحات الحمضيات وزهرة الليمون، يمنحك إشراقًا ومغامرة.</p>
+    <img src="img/271.jpg" alt="Friday"class="result-image">
+
+    <a href="#step1" class="btn">إعادة الاختبار</a>
+</div>
+
+
+
+</body>
+
+</html>

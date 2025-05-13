@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>our parfumes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    .tag {
+        color: white;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 12px;
+        display: inline-block;
+        font-weight: bold;
+        margin-right: 5px;
+    }
+
+    .tag.floral { background-color: #ff69b4; } /* زهري */
+    .tag.citrus { background-color: #ffa500; } /* حمضي */
+    .tag.green { background-color: #2e8b57; } /* أخضر */
+    .tag.woody { background-color: #a0522d; } /* خشبي */
+    .tag.fruity { background-color: #ff8c00; } /* فاكهي */
+    .tag.musky { background-color: #808080; } /* مسكي */
+    .tag.amber { background-color: #daa520; } /* عنبري */
+    .tag.embrey { background-color: #708090; } /* رمادي غامق */
+
+    .card-tags {
+        display: flex;
+        gap: 5px;
+        justify-content: center;
+        margin-top: 8px;
+    }
+
+    .scent-links {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 50px;
+    }
+
+    .scent-links a {
+        text-decoration: none;
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 20px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+     }
+
+     .scent-links a:hover {
+        background-color: #555;
+     }
+
+     html {
+        direction: rtl;
+     }
+
+     body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva,Verdana, sans-serif;
+        background: #f9f8f6;
+        }
+
+      header {
+
+            background-color: #fff; 
+
+            color: #555;
+
+            text-align: center;
+
+            padding: 1.5rem 0; 
+
+            border-bottom: 1px solid #eee; 
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); 
+
+            display: flex;
+
+            justify-content: space-around; 
+            flex-direction: row-reverse;
+            align-items: center;
+
+        }
+     .logo {
+
+            font-size: 1.5em;
+
+            font-weight: bold;
+
+            color: #b75986; 
+
+        }
+
+        .nav-links a {
+        background-color: none;
+        border-radius: 6px;
+        text-decoration: none;
+        color: #555;
+        margin: 0 10px;
+        padding: 12px 12px; 
+        font-size: 1.1rem; 
+
+
+        }
+
+        .nav-links a:hover {
+
+            color: #d2b48c;
+
+        }
+
+        h1 {
+
+            color: #666;
+
+            text-align: center;
+
+            margin-bottom: 2em;
+
+            margin-top: 2em;
+
+            font-size: 2em; 
+
+        }
+
+
+        footer {
+            background-color: #191717; 
+
+            color: #cdcdcd;
+
+            text-align: center;
+
+            padding: 1.5rem 0; 
+
+            border-bottom: 1px solid #eee; 
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); 
+
+            display: flex;
+
+            justify-content: space-around; 
+            flex-direction: row-reverse;
+            align-items: center;
+        }
+        #sidebar-toggle {
+           display: none;
+        }
+
+        .toggle-button {
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          background: #333;
+          color: #fff;
+          font-size: 24px;
+          padding: 10px 14px;
+          cursor: pointer;
+          z-index: 1000;
+          border-radius: 4px;
+        }
+
+        .sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: -250px;
+      width: 250px;
+      background: #f4f4f4;
+      box-shadow: -2px 0 5px rgba(0,0,0,0.3);
+      transition: right 0.3s ease;
+      padding-top: 80px;
+      z-index: 900;
+      }
+
+     .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+     }
+
+     .sidebar ul li {
+      padding: 15px 20px;
+      border-bottom: 1px solid #ddd;
+     }
+
+ 
+     .sidebar ul li a {
+     color: #333;
+     text-decoration: none;
+     display: block;
+     }
+
+     .sidebar ul li a:hover {
+     color: #000;
+     font-weight: bold;
+     }
+
+     #sidebar-toggle:checked ~ .sidebar {
+      right: 0;
+     }
+
+     main {
+        padding: 2rem;
+        margin-top: 2rem;
+     }
+
+     h2 {
+        border-bottom: 2px solid #ccc;
+        padding-bottom: 0.5rem;
+     }
+
+     .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+     }
+
+     .card {
+        width: 200px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        background: #fff;
+     }
+
+     .card img {
+        width: 100%;
+        height: 180px;
+        object-fit: contain;
+     }
+
+     .brand {
+        font-weight: bold;
+        margin-top: 8px;
+     }
+     .price {
+        color: #2e8b57;
+        font-size: 1.1rem;   
+        font-weight: 600;     
+     }
+
+
+     .add-to-cart {
+        display: block; /* مهم! */
+        width: 100%;
+        background-color: #0a030e;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        font-size: 14px;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background-color 0.3s ease;
+     }
+
+     .add-to-cart:hover {
+        background-color: #c4aed4;
+     }
+
+     .rating {
+        color: orange;
+        font-size: 18px;
+     }
+     #contact {
+      padding: 2rem;
+      background: #f5f5f5;
+      border-radius: 8px;
+       max-width: 600px;
+       margin: auto;
+     }
+
+#contact h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+#contact form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#contact input,
+#contact textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#contact button {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#contact button:hover {
+  background-color: #555;
+}
+
+.contact-info {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+</style>
+</head>
+<body>
+
+    <input type="checkbox" id="sidebar-toggle">
+    <label for="sidebar-toggle" class="toggle-button">☰</label>
+
+        <header>
+
+        <div class="logo">
+
+            <span style="font-style: italic;">lillac</span>Scents
+
+        </div>
+
+        <nav class="nav-links">
+
+            <a href="#">home</a>
+
+            <a href="#preferences">fregrance preferences</a>
+
+            <a href="projet.html">our parfumes</a>
+
+            <a href="last.html">Quiz</a>
+
+            <a href="#contact">contact us</a>
+
+        </nav>
+
+    </header>
+    <div class="sidebar">
+        <ul>
+            <li><a href="#soir">عطور مسائية وعطور المناسبات الخاصة</a></li>
+            <li><a href="#work">عطور يومية للعمل والدراسة</a></li>
+            <li><a href="#sport">عطور الانشطة الرياضية</a></li>
+            <li><a href="#femme">عطور انثوية</a></li>
+            <li><a href="#winter">عطور شتوية</a></li>
+            <li><a href="#summer">عطور صيفية</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <section id="soir">
+            <h2>عطور مسائية ومناسبات خاصة</h2>
+            <div class="container">
+                <div class="card">
+                    <img src="img/271.jpg" alt="GALLURY MUSE">
+                    <div class="brand">GALLERY MUSE</div>
+                    <div>N°271</div>
+                    <div class="card-tags">
+                        <span class="tag floral">FLORAL</span>
+                    </div>
+                    <div class="price">price:4000DA</div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                    <div class="rating">★★★★☆ (869)</div>
+                </div>
+
+                <div class="card">
+                    <img src="img/345.jpg" alt="INDIGO HAZE">
+                    <div class="brand">INDIGO HAZE</div>
+                    <div>N°345</div>
+                    <div class="card-tags">
+                        <span class="tag citrus">CITRUS</span>
+                    </div>
+                    <div class="price">price:4000DA</div>
+
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                    <div class="rating">★★★★☆ (529)</div>
+                </div>
+
+                <div class="card">
+                    <img src="img/602.jpg" alt="ON THE VERANDA">
+                    <div class="brand">ON THE VERANDA</div>
+                    <div>N°602</div>
+                    <div class="card-tags">
+                        <span class="tag floral">FLORAL</span>
+                    </div>
+                    <div class="price">price:4000DA</div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                    <div class="rating">★★★★☆ (331)</div>
+                </div>
+
+                <div class="card">
+                    <img src="img/743.jpg" alt="POET'S DREAM">
+                    <div class="brand">POET'S DREAM</div>
+                    <div>N°743</div>
+                    <div class="card-tags">
+                        <span class="tag floral">FLORAL</span>
+                    </div>
+                    <div class="price">price:4000DA</div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                    <div class="rating">★★★★☆ (389)</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="work">
+            <h2>عطور يومية للعمل او الدراسة</h2>
+            <div class="container">
+                <div class="card">
+                    <img src="img/290.jpg" alt="D&G Light Blue">
+                    <div class="brand">CRESCENDO</div>
+                    <div>N°290</div>
+                    <div class="card-tags">
+                        <span class="tag floral">FLORAL</span>
+                    </div>
+                    <div class="price">price:4000DA</div>
+
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                    <div class="rating">★★★★☆ (869)</div>
+                </div>
+
+                <div class="card">
+                    <img src="img/470.jpg" alt="Versace Bright Crystal">
+                    <div class="brand">FLOATING GARDEN</div>
+                    <div>N°470</div>
+                    <div class="card-tags">
+                        <span class="tag green">GREEN</span>
+                    </div>
+                    <div class="price">price:4000DA</div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                    <div class="rating">★★★★☆ (529)</div>
+                </div>
+
+                <div class="card">
+                    <img src="img/619.jpg" alt="Viva La Juicy">
+                    <div class="brand">HIDDEN COAST</div>
+                    <div>N°619</div>
+                    <div class="card-tags">
+                        <span class="tag woody">WOODY</span>
+                    </div>
+                    <div class="price">price:4000DA</div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                    <div class="rating">★★★★☆ (331)</div>
+                </div>
+
+                <div class="card">
+                    <img src="img/818.jpg" alt="Jimmy Choo">
+                    <div class="brand">ALMOST FRIDAY</div>
+                    <div>N°818</div>
+                    <div class="card-tags">
+                        <span class="tag fruity">FRUITY</span>
+                    </div>
+                    <div class="price">price:4000DA</div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                    <div class="rating">★★★★☆ (389)</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sport">
+            <h2>عطور انشطة رياضية</h2>
+            <div class="container">
+                <div class="card">
+                    <img src="img/144.jpg" alt="D&G Light Blue">
+                    <div class="brand">BRIGHTSIDE</div>
+                    <div>N°144</div>
+                    <div class="card-tags">
+                        <span class="tag citrus">CITRUS</span>
+                    </div>
+                    <div class="price">price:4000DA</div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                    <div class="rating">★★★★☆ (869)</div>
+                </div>
+
+                <div class="card">
+                    <img src="img/307.jpg" alt="Versace Bright Crystal">
+                    <div class="brand">SUNLIT GROVE</div>
+                    <div>N°307</div>
+                    <div class="card-tags">
+                        <span class="tag citrus">CITRUS</span>
+                    </div>
+                    <div class="price">price:4000DA</div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                    <div class="rating">★★★★☆ (529)</div>
+                </div>
+
+                <div class="card">
+                    <img src="img/619.jpg" alt="Viva La Juicy">
+                    <div class="brand">HIDDEN COAST</div>
+                    <div>N°619</div>
+                    <div class="card-tags">
+                        <span class="tag woody">WOODY</span>
+                    </div>
+                    <div class="price">price:4000DA</div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                    <div class="rating">★★★★☆ (331)</div>
+                </div>
+
+                <div class="card">
+                    <img src="img/841.jpg" alt="Jimmy Choo">
+                    <div class="brand">POET'S DREAM</div>
+                    <div>N°841</div>
+                    <div class="card-tags">
+                        <span class="tag citrus">CITRUS</span>
+                    </div>
+                    <div class="price">price:4000DA</div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                    <div class="rating">★★★★☆ (389)</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="femme">
+            <h2>عطور انثوية</h2>
+            <div class="container">
+                <div class="card">
+                    <img src="img/042.jpg" alt="D&G Light Blue">
+                    <div class="brand">MOONLIT TERRACE</div>
+                    <div>N°042</div>
+                    <div class="card-tags">
+                        <span class="tag embrey">EMBREY</span>
+                    </div>
+                    <div class="price">price:4000DA</div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                    <div class="rating">★★★★☆ (869)</div>
+                </div>
+
+                <div class="card">
+                    <img src="img/057.jpg" alt="Versace Bright Crystal">
+                    <div class="brand">SWEET EMBRACE</div>
+                    <div>N°057</div>
+                    <div class="card-tags">
+                        <span class="tag fruity">FRUITY</span>
+                    </div>
+                    <div class="price">price:4000DA</div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                    <div class="rating">★★★★☆ (529)</div>
+                </div>
+
+                <div class="card">
+                    <img src="img/150.jpg" alt="Viva La Juicy">
+                    <div class="brand">BLUSH AFFAIR</div>
+                    <div>N°150</div>
+                    <div class="card-tags">
+                        <span class="tag floral">FLORAL</span>
+                    </div>
+                    <div class="price">price:4000DA</div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                    <div class="rating">★★★★☆ (331)</div>
+                </div>
+
+                <div class="card">
+                    <img src="img/290.jpg" alt="Jimmy Choo">
+                    <div class="brand">Jimmy Choo</div>
+                    <div>N°290</div>
+                    <div class="card-tags">
+                        <span class="tag floral">FLORAL</span>
+                    </div>
+                    <div class="price">price:4000DA</div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                    <div class="rating">★★★★☆ (389)</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="winter">
+            <h2>عطور شتوية</h2>
+            <div class="container">
+                <div class="card">
+                    <img src="img/441.jpg" alt="D&G Light Blue">
+                    <div class="brand">CRYSTALLIZED WOODS</div>
+                    <div>N°441</div>
+                    <div class="card-tags">
+                        <span class="tag musky">MUSKY</span>
+                    </div>
+                    <div class="price">price:4000DA</div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                    <div class="rating">★★★★☆ (869)</div>
+                </div>
+
+                <div class="card">
+                    <img src="img/551.jpg" alt="Versace Bright Crystal">
+                    <div class="brand">AMBER SUNSET</div>
+                    <div>N°551</div>
+                    <div class="card-tags">
+                        <span class="tag musky">MUSKY</span>
+                    </div>
+                    <div class="price">price:4000DA</div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                      <div class="rating">★★★★☆ (529)</div>
+                </div>
+
+                <div class="card">
+                    <img src="img/841.jpg" alt="Viva La Juicy">
+                    <div class="brand">POET'S DREAM</div>
+                    <div>N°841</div>
+                    <div class="card-tags">
+                        <span class="tag citrus">CITRUS</span>
+                    </div>
+                    <div class="price">price:4000DA</div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                    <div class="rating">★★★★☆ (331)</div>
+                </div>
+
+                <div class="card">
+                    <img src="img/866.jpg" alt="Jimmy Choo">
+                    <div class="brand">URBAN NIGHT</div>
+                    <div>N°866</div>
+                    <div class="card-tags">
+                        <span class="tag woody">WOODY</span>
+                    </div>
+                    <div class="price">price:4000DA</div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                    <div class="rating">★★★★☆ (389)</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="summer">
+            <h2>عطور صيفية</h2>
+            <div class="container">
+                <div class="card">
+                    <img src="img/008.jpg" alt="D&G Light Blue">
+                    <div class="brand">SAY YES!</div>
+                    <div>N°008</div>
+                    <div class="card-tags">
+                        <span class="tag fruity">FRUITY</span>
+                    </div>
+                    <div class="price">price:4000DA</div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                    <div class="rating">★★★★☆ (869)</div>
+                </div>
+
+                <div class="card">
+                    <img src="img/232.jpg" alt="Versace Bright Crystal">
+                    <div class="brand">WANDERER</div>
+                    <div>N°232</div>
+                    <div class="card-tags">
+                        <span class="tag citrus">CITRUS</span>
+                    </div>
+                    <div class="price">price:4000DA</div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                    <div class="rating">★★★★☆ (529)</div>
+                </div>
+
+                <div class="card">
+                    <img src="img/249.jpg" alt="Viva La Juicy">
+                    <div class="brand">AFTERNOON DAYDREAM</div>
+                    <div>N°249</div>
+                    <div class="card-tags">
+                        <span class="tag fruity">FRUITY</span>
+                    </div>
+                    <div class="price">price:4000DA</div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                    <div class="rating">★★★★☆ (331)</div>
+                </div>
+
+                <div class="card">
+                    <img src="img/415.jpg" alt="Jimmy Choo">
+                    <div class="brand">CHATEAU</div>
+                    <div>N°415</div>
+                    <div class="card-tags">
+                        <span class="tag fruity">FRUITY</span>
+                    </div>
+                    <div class="price">price:4000DA</div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                    <div class="rating">★★★★☆ (389)</div>
+                </div>
+            </div>
+        </section>
+       <section id="contact">
+  <h2>اتصل بنا</h2>
+  <p>If you have any questions or feedback, feel free to reach out to us</p>
+
+  <form action="#" method="post">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="message">Message</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+
+    <button type="submit">Send Message</button>
+  </form>
+
+  <div class="contact-info">
+    <p><strong>Email:</strong> info@lillacscents.com</p>
+    <p><strong>Phone:</strong> +213 775 93 50 08</p>
+    <p><strong>Address:</strong> kouba, algeirs, algeria</p>
+  </div>
+</section>
+
+    </main>
+
+    <footer>
+        <p>&copy; ALGER 2025 جميع الحقوق محفوظة</p>
+    </footer>
+
+</body>
+</html>
